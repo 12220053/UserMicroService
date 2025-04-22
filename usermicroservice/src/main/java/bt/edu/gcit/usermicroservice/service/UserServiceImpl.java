@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -109,12 +108,17 @@ public class UserServiceImpl implements UserService {
 
         // Extract file extension and generate a new filename with timestamp to ensure uniqueness
         String filenameExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+        System.out.println(filenameExtension);
         String filenameWithoutExtension = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+        System.out.println(filenameWithoutExtension);
         String timestamp = String.valueOf(System.currentTimeMillis());
+        System.out.println(timestamp);
         String filename = filenameWithoutExtension + "_" + timestamp + "." + filenameExtension;
+        System.out.println(filename);
 
         // Define the upload path and transfer the photo
         Path uploadPath = Paths.get(uploadDir, filename);
+        System.out.println(uploadPath);
         photo.transferTo(uploadPath);
 
         // Update the user's photo
